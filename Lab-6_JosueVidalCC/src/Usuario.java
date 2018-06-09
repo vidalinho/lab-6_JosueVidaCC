@@ -1,5 +1,9 @@
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,16 +19,18 @@ public class Usuario {
     private String correo;
     private String contra;
     private int fecha;
+    private int tarjeta;
     private ArrayList<Peliculas> pelis = new ArrayList();
     private ArrayList<Series> serie = new ArrayList();
 
     public Usuario() {
     }
 
-    public Usuario(String correo, String contra, int fecha) {
+    public Usuario(String correo, String contra, int fecha, int tarjeta) {
         this.correo = correo;
         this.contra = contra;
         this.fecha = fecha;
+        this.tarjeta = tarjeta;
     }
 
     public String getCorreo() {
@@ -51,6 +57,14 @@ public class Usuario {
         this.fecha = fecha;
     }
 
+    public int getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(int tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
     public ArrayList<Peliculas> getPelis() {
         return pelis;
     }
@@ -69,7 +83,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "correo=" + correo + ", contra=" + contra + ", fecha=" + fecha + ", pelis=" + pelis + ", serie=" + serie + '}';
+        return "Usuario{" + "correo=" + correo + ", contra=" + contra + ", fecha=" + fecha + ", tarjeta=" + tarjeta + ", pelis=" + pelis + ", serie=" + serie + '}';
     }
 
 }

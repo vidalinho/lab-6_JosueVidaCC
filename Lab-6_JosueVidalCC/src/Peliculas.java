@@ -129,5 +129,5 @@ class Peliculas {
     public String toString() {
         return "Peliculas{" + "id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + ", idiomas=" + idiomas + ", subs=" + subs + ", duracion=" + duracion + ", rating=" + rating + ", comentarios=" + comentarios + ", productora=" + productora + ", director=" + director + ", actores=" + actores + '}';
     }
-    
+
 }
