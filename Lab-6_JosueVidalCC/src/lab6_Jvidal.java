@@ -51,15 +51,7 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         peliculas.add(new Peliculas(8, "Pac man", "Terror", 2, 3, "Warner", "Oscar Manzanarez"));
         peliculas.add(new Peliculas(9, "Code", "Romance", 1, 2, "Marvel", "Peter Pan"));
         peliculas.add(new Peliculas(10, "Nerve", "Romance", 3, 4, "DCcomics", "Hernan Medford"));
-        if (tf_usuario.getText().equals("admin") && ps_contra.getText().equals("admin")) {
-            
-            jb_agregarPeli.setEnabled(true);
-            jb_agregarS.setEnabled(true);
-            jb_modificarPeli.setEnabled(true);
-            jb_modificarS.setEnabled(true);
-            jb_eliminarPeli.setEnabled(true);
-            jb_eliminarS.setEnabled(true);
-        }
+
     }
 
     /**
@@ -654,7 +646,7 @@ public class lab6_Jvidal extends javax.swing.JFrame {
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloFavoritos.getRoot();
             DefaultListModel modeloSeries = (DefaultListModel) jl_series.getModel();
             DefaultListModel modeloPeliculas = (DefaultListModel) jl_peliculas.getModel();
-            
+
             String cat = ((Peliculas) peliculas.get(jl_peliculas.getSelectedIndex())).getCategoria();
             String nombre = ((Peliculas) peliculas.get(jl_peliculas.getSelectedIndex())).getNombre();
             String nombre1 = ((Series) series.get(jl_series.getSelectedIndex())).getNombre();
@@ -666,11 +658,11 @@ public class lab6_Jvidal extends javax.swing.JFrame {
             int centinela = -1;
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().equals(m.toString())) {
-                    
+
                     DefaultMutableTreeNode p = new DefaultMutableTreeNode(cat);
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                     centinela = 1;
-                    
+
                 }
             }
             if (centinela == -1) {
@@ -682,7 +674,11 @@ public class lab6_Jvidal extends javax.swing.JFrame {
                 n.add(p);
                 raiz.add(n);
                 raiz.add(a);
-                
+                try {
+                    escribirFavoritos();
+                } catch (IOException ex) {
+                    Logger.getLogger(lab6_Jvidal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             modeloFavoritos.reload();
         }
@@ -701,7 +697,21 @@ public class lab6_Jvidal extends javax.swing.JFrame {
             jb_modificarS.setEnabled(true);
             jb_eliminarPeli.setEnabled(true);
             jb_eliminarS.setEnabled(true);
+
         }
+        if (tf_usuario.getText().equals(tf_user.getText()) && tf_contra.getText().equals(ps_contra.getText())) {
+            jd_home.setModal(true);
+            jd_home.pack();
+            jd_home.setVisible(true);
+            jd_home.setLocationRelativeTo(this);
+            jb_agregarPeli.setEnabled(false);
+            jb_agregarS.setEnabled(false);
+            jb_modificarPeli.setEnabled(false);
+            jb_modificarS.setEnabled(false);
+            jb_eliminarPeli.setEnabled(false);
+            jb_eliminarS.setEnabled(false);
+
+        } 
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -789,10 +799,31 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         try {
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
-            
+
             bw.write(tf_user.getText() + ";");
             bw.write(tf_contra.getText() + ";");
-            
+
+            bw.flush();
+        } catch (Exception e) {
+        }
+        bw.close();
+        fw.close();
+    }
+
+    public void escribirFavoritos() throws IOException {
+        File archivo = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        archivo = new File("./Favoritas.txt");
+        try {
+            fw = new FileWriter(archivo, true);
+            bw = new BufferedWriter(fw);
+
+            bw.write(tf_user.getText() + ";");
+            String nombre = ((Peliculas) peliculas.get(jl_peliculas.getSelectedIndex())).getNombre();
+            String nombre1 = ((Series) series.get(jl_series.getSelectedIndex())).getNombre();
+            bw.write(nombre + ";");
+            bw.write(nombre1 + ";");
             bw.flush();
         } catch (Exception e) {
         }
