@@ -52,7 +52,7 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         peliculas.add(new Peliculas(9, "Code", "Romance", 1, 2, "Marvel", "Peter Pan"));
         peliculas.add(new Peliculas(10, "Nerve", "Romance", 3, 4, "DCcomics", "Hernan Medford"));
         if (tf_usuario.getText().equals("admin") && ps_contra.getText().equals("admin")) {
-
+            
             jb_agregarPeli.setEnabled(true);
             jb_agregarS.setEnabled(true);
             jb_modificarPeli.setEnabled(true);
@@ -649,30 +649,40 @@ public class lab6_Jvidal extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // boton para agregar al arbol
         if (jl_peliculas.getSelectedIndex() >= 0 || jl_series.getSelectedIndex() >= 0) {
-            DefaultTreeModel modeloFavoritos = (DefaultTreeModel)jt_arbol.getModel();
+            DefaultMutableTreeNode nodo_cat = null;
+            DefaultTreeModel modeloFavoritos = (DefaultTreeModel) jt_arbol.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloFavoritos.getRoot();
             DefaultListModel modeloSeries = (DefaultListModel) jl_series.getModel();
             DefaultListModel modeloPeliculas = (DefaultListModel) jl_peliculas.getModel();
             
-            
-            Series c = (Series) modeloSeries.get(jl_series.getSelectedIndex());
+            String cat = ((Peliculas) peliculas.get(jl_peliculas.getSelectedIndex())).getCategoria();
+            String nombre = ((Peliculas) peliculas.get(jl_peliculas.getSelectedIndex())).getNombre();
+            String nombre1 = ((Series) series.get(jl_series.getSelectedIndex())).getNombre();
+            nodo_cat = new DefaultMutableTreeNode(cat);
+            String catS = ((Series) series.get(jl_series.getSelectedIndex())).getCategoria();
+            nodo_cat = new DefaultMutableTreeNode(catS);
             Peliculas m = (Peliculas) modeloPeliculas.get(jl_peliculas.getSelectedIndex());
+            Series c = (Series) modeloSeries.get(jl_series.getSelectedIndex());
             int centinela = -1;
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().equals(m.toString())) {
-
-                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(c);
+                    
+                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(cat);
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                     centinela = 1;
-
+                    
                 }
             }
             if (centinela == -1) {
-                DefaultMutableTreeNode n = new DefaultMutableTreeNode(m);
-                DefaultMutableTreeNode p = new DefaultMutableTreeNode(c);
+                DefaultMutableTreeNode a = new DefaultMutableTreeNode(catS);
+                DefaultMutableTreeNode b = new DefaultMutableTreeNode(nombre1);
+                DefaultMutableTreeNode n = new DefaultMutableTreeNode(cat);
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(nombre);
+                a.add(b);
                 n.add(p);
                 raiz.add(n);
-
+                raiz.add(a);
+                
             }
             modeloFavoritos.reload();
         }
@@ -779,10 +789,10 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         try {
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
-
+            
             bw.write(tf_user.getText() + ";");
             bw.write(tf_contra.getText() + ";");
-
+            
             bw.flush();
         } catch (Exception e) {
         }
