@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 class Peliculas {
 
-    private String id;
+    private int id;
     private String nombre;
     private String categoria;
     private ArrayList idiomas = new ArrayList();
@@ -27,7 +27,7 @@ class Peliculas {
     public Peliculas() {
     }
 
-    public Peliculas(String id, String nombre, String categoria, int duracion, int rating, String productora, String director) {
+    public Peliculas(int id, String nombre, String categoria, int duracion, int rating, String productora, String director) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -37,11 +37,11 @@ class Peliculas {
         this.director = director;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -127,7 +127,7 @@ class Peliculas {
 
     @Override
     public String toString() {
-        return "Peliculas{" + "id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + ", idiomas=" + idiomas + ", subs=" + subs + ", duracion=" + duracion + ", rating=" + rating + ", comentarios=" + comentarios + ", productora=" + productora + ", director=" + director + ", actores=" + actores + '}';
+        return nombre ;
     }
 
 }

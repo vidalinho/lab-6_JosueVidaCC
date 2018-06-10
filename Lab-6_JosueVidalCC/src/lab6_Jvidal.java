@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -28,6 +29,37 @@ public class lab6_Jvidal extends javax.swing.JFrame {
      */
     public lab6_Jvidal() {
         initComponents();
+        String contra = "admin";
+        String usuario = "admin";
+        series.add(new Series(1, "coco", 2, "Accion", 1, 5, "Warner", "Roberto Carlos"));
+        series.add(new Series(2, "Arrow", 4, "Accion", 2, 3, "DC", "Zidane"));
+        series.add(new Series(3, "Gossip Girl", 5, "Accion", 3, 4, "Warner", "CR7"));
+        series.add(new Series(4, "Breaking Bad", 3, "Accion", 3, 4, "Marvel", "Michael Jackson"));
+        series.add(new Series(5, "Baleadaman", 2, "Comedia", 2, 3, "DC", "Pavon"));
+        series.add(new Series(6, "Tacoman", 6, "Comedia", 1, 2, "Marvel", "Miley Cyrus"));
+        series.add(new Series(7, "Megaman", 7, "Romance", 1, 5, "Warner", "Bad Bunny"));
+        series.add(new Series(8, "Avengers", 1, "Accion", 2, 5, "DC", "Ronaldinho"));
+        series.add(new Series(9, "Hola bbe", 6, "Romance", 3, 3, "Marvel", "Mark Zuckemberg"));
+        series.add(new Series(10, "Simonkey", 8, "Terror", 1, 1, "DC", "El Guason bb"));
+        peliculas.add(new Peliculas(1, "Batman", "Accion", 3, 5, "DCcomics", "Peter la aguila"));
+        peliculas.add(new Peliculas(2, "Superman", "Accion", 1, 4, "DCcomics", "Andrea Nicole"));
+        peliculas.add(new Peliculas(3, "Anterman", "Accion", 2, 4, "Marvel", "Christian Mena "));
+        peliculas.add(new Peliculas(4, "America Sniper", "Accion", 3, 3, "Warner", "Karla Ponce"));
+        peliculas.add(new Peliculas(5, "Cars", "Comedia", 3, 5, "DCcomics", "Jose Abraham"));
+        peliculas.add(new Peliculas(6, "Planes", "Comedia", 2, 4, "Marvel", "Wilo Almendarez"));
+        peliculas.add(new Peliculas(7, "Toy Story", "Comedia", 1, 5, "DCcomics", "Vidal Flores"));
+        peliculas.add(new Peliculas(8, "Pac man", "Terror", 2, 3, "Warner", "Oscar Manzanarez"));
+        peliculas.add(new Peliculas(9, "Code", "Romance", 1, 2, "Marvel", "Peter Pan"));
+        peliculas.add(new Peliculas(10, "Nerve", "Romance", 3, 4, "DCcomics", "Hernan Medford"));
+        if (tf_usuario.getText().equals("admin") && ps_contra.getText().equals("admin")) {
+
+            jb_agregarPeli.setEnabled(true);
+            jb_agregarS.setEnabled(true);
+            jb_modificarPeli.setEnabled(true);
+            jb_modificarS.setEnabled(true);
+            jb_eliminarPeli.setEnabled(true);
+            jb_eliminarS.setEnabled(true);
+        }
     }
 
     /**
@@ -60,10 +92,18 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_peliculas = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_arbol = new javax.swing.JTree();
         jScrollPane3 = new javax.swing.JScrollPane();
         jl_series = new javax.swing.JList<>();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jb_agregarPeli = new javax.swing.JButton();
+        jb_modificarPeli = new javax.swing.JButton();
+        jb_agregarS = new javax.swing.JButton();
+        jb_eliminarPeli = new javax.swing.JButton();
+        jb_modificarS = new javax.swing.JButton();
+        jb_eliminarS = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -230,8 +270,8 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jl_peliculas);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Favoritos");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane2.setViewportView(jTree1);
+        jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jt_arbol);
 
         jl_series.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jl_series);
@@ -240,6 +280,73 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton5.setText("Mostrar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        jButton6.setText("Mostrar");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jb_agregarPeli.setText("Agregar");
+        jb_agregarPeli.setEnabled(false);
+        jb_agregarPeli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregarPeliMouseClicked(evt);
+            }
+        });
+
+        jb_modificarPeli.setText("Modificar");
+        jb_modificarPeli.setEnabled(false);
+        jb_modificarPeli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_modificarPeliMouseClicked(evt);
+            }
+        });
+
+        jb_agregarS.setText("Agregar");
+        jb_agregarS.setEnabled(false);
+        jb_agregarS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregarSMouseClicked(evt);
+            }
+        });
+
+        jb_eliminarPeli.setText("Eliminar");
+        jb_eliminarPeli.setEnabled(false);
+        jb_eliminarPeli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_eliminarPeliMouseClicked(evt);
+            }
+        });
+
+        jb_modificarS.setText("Modificar");
+        jb_modificarS.setEnabled(false);
+        jb_modificarS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_modificarSMouseClicked(evt);
+            }
+        });
+
+        jb_eliminarS.setText("Eliminar");
+        jb_eliminarS.setEnabled(false);
+        jb_eliminarS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_eliminarSMouseClicked(evt);
             }
         });
 
@@ -253,23 +360,40 @@ public class lab6_Jvidal extends javax.swing.JFrame {
             .addGroup(jd_homeLayout.createSequentialGroup()
                 .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_homeLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel11))
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5))
                     .addGroup(jd_homeLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jd_homeLayout.createSequentialGroup()
+                                .addComponent(jb_agregarPeli)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_modificarPeli))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_homeLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(192, 192, 192))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_homeLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)))
+                .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jd_homeLayout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton6)
+                            .addGap(27, 27, 27))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_homeLayout.createSequentialGroup()
+                        .addComponent(jb_agregarS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jb_modificarS)))
+                .addGap(90, 90, 90)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_homeLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
+                .addComponent(jb_eliminarPeli)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jb_eliminarS)
+                .addGap(205, 205, 205)
                 .addComponent(jButton4)
                 .addGap(81, 81, 81))
         );
@@ -279,24 +403,41 @@ public class lab6_Jvidal extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_homeLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_homeLayout.createSequentialGroup()
                         .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jd_homeLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel12))
-                            .addGroup(jd_homeLayout.createSequentialGroup()
                                 .addGap(48, 48, 48)
-                                .addComponent(jLabel11)))
+                                .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jButton5)))
+                            .addGroup(jd_homeLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jButton6))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addComponent(jScrollPane3))
-                        .addGap(104, 104, 104))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jb_agregarPeli)
+                            .addComponent(jb_modificarPeli)
+                            .addComponent(jb_agregarS)
+                            .addComponent(jb_modificarS))
+                        .addGroup(jd_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_homeLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jb_eliminarPeli))
+                            .addGroup(jd_homeLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jb_eliminarS)))
+                        .addContainerGap())
+                    .addGroup(jd_homeLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -392,6 +533,9 @@ public class lab6_Jvidal extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
             }
         });
 
@@ -495,27 +639,22 @@ public class lab6_Jvidal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        try {
-            jd_registro.setModal(true);
-            jd_registro.pack();
-            jd_registro.setVisible(true);
-            jd_registro.setLocationRelativeTo(this);
-
-            escribirArchivo();
-
-        } catch (IOException ex) {
-            Logger.getLogger(lab6_Jvidal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jd_registro.setModal(true);
+        jd_registro.pack();
+        jd_registro.setVisible(true);
+        jd_registro.setLocationRelativeTo(this);
 
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // boton para agregar al arbol
         if (jl_peliculas.getSelectedIndex() >= 0 || jl_series.getSelectedIndex() >= 0) {
-            DefaultTreeModel modeloFavoritos = (DefaultTreeModel) jl_series.getModel();
+            DefaultTreeModel modeloFavoritos = (DefaultTreeModel)jt_arbol.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloFavoritos.getRoot();
             DefaultListModel modeloSeries = (DefaultListModel) jl_series.getModel();
             DefaultListModel modeloPeliculas = (DefaultListModel) jl_peliculas.getModel();
+            
+            
             Series c = (Series) modeloSeries.get(jl_series.getSelectedIndex());
             Peliculas m = (Peliculas) modeloPeliculas.get(jl_peliculas.getSelectedIndex());
             int centinela = -1;
@@ -541,25 +680,97 @@ public class lab6_Jvidal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // boton iniciar sesion
-        jd_home.setModal(true);
-        jd_home.pack();
-        jd_home.setVisible(true);
-        jd_home.setLocationRelativeTo(this);
-        File archivo = null;
-
-        archivo = new File("./Peliculas.txt");
-
-        Scanner sc = null;
-        try {
-            sc = new Scanner(archivo);
-            sc.useDelimiter(";");
-            while(sc.hasNext()){
-                
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(lab6_Jvidal.class.getName()).log(Level.SEVERE, null, ex);
+        if (tf_usuario.getText().equals("admin") && ps_contra.getText().equals("admin")) {
+            jd_home.setModal(true);
+            jd_home.pack();
+            jd_home.setVisible(true);
+            jd_home.setLocationRelativeTo(this);
+            jb_agregarPeli.setEnabled(true);
+            jb_agregarS.setEnabled(true);
+            jb_modificarPeli.setEnabled(true);
+            jb_modificarS.setEnabled(true);
+            jb_eliminarPeli.setEnabled(true);
+            jb_eliminarS.setEnabled(true);
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // mostrar peliculas
+        DefaultListModel modeloPeliculas = (DefaultListModel) jl_peliculas.getModel();
+        for (int i = 0; i < peliculas.size(); i++) {
+            modeloPeliculas.addElement(peliculas.get(i));
+        }
+        jl_peliculas.setModel(modeloPeliculas);
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // mostrar series
+
+        DefaultListModel modeloSeries = (DefaultListModel) jl_series.getModel();
+        for (int i = 0; i < series.size(); i++) {
+            modeloSeries.addElement(series.get(i));
+        }
+        jl_series.setModel(modeloSeries);
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jb_agregarPeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregarPeliMouseClicked
+        DefaultListModel modeloPeliculas = (DefaultListModel) jl_peliculas.getModel();
+        String nueva = JOptionPane.showInputDialog("INGRESE NUEVA PELICULA");
+        peliculas.add(nueva);
+        modeloPeliculas.addElement(nueva);
+        jl_peliculas.setModel(modeloPeliculas);
+    }//GEN-LAST:event_jb_agregarPeliMouseClicked
+
+    private void jb_agregarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregarSMouseClicked
+        DefaultListModel modeloS = (DefaultListModel) jl_series.getModel();
+        String nueva = JOptionPane.showInputDialog("INGRESE NUEVA SERIE");
+        series.add(nueva);
+        modeloS.addElement(nueva);
+        jl_series.setModel(modeloS);
+    }//GEN-LAST:event_jb_agregarSMouseClicked
+
+    private void jb_eliminarPeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_eliminarPeliMouseClicked
+        // TODO add your handling code here:
+        if (jl_peliculas.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jl_peliculas.getModel();
+            modelo.remove((jl_peliculas.getSelectedIndex()));
+        }
+    }//GEN-LAST:event_jb_eliminarPeliMouseClicked
+
+    private void jb_eliminarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_eliminarSMouseClicked
+        // TODO add your handling code here:
+        if (jl_series.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jl_series.getModel();
+            modelo.remove((jl_series.getSelectedIndex()));
+        }
+    }//GEN-LAST:event_jb_eliminarSMouseClicked
+
+    private void jb_modificarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_modificarSMouseClicked
+        if (jl_series.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jl_series.getModel();
+            int pos = jl_series.getSelectedIndex();
+            String nnom = JOptionPane.showInputDialog(this, "Ingrese nombre");
+            modelo.setElementAt(nnom, pos);
+        }
+    }//GEN-LAST:event_jb_modificarSMouseClicked
+
+    private void jb_modificarPeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_modificarPeliMouseClicked
+        // TODO add your handling code here:
+        if (jl_peliculas.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jl_peliculas.getModel();
+            int pos = jl_peliculas.getSelectedIndex();
+            String nnom = JOptionPane.showInputDialog(this, "Ingrese nombre");
+            modelo.setElementAt(nnom, pos);
+        }
+    }//GEN-LAST:event_jb_modificarPeliMouseClicked
     public void escribirArchivo() throws IOException {
         File archivo = null;
         FileWriter fw = null;
@@ -571,8 +782,6 @@ public class lab6_Jvidal extends javax.swing.JFrame {
 
             bw.write(tf_user.getText() + ";");
             bw.write(tf_contra.getText() + ";");
-            bw.write(tf_nacimiento.getText() + ";");
-            bw.write(tf_tarjeta.getText() + ";");
 
             bw.flush();
         } catch (Exception e) {
@@ -621,6 +830,8 @@ public class lab6_Jvidal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -644,11 +855,17 @@ public class lab6_Jvidal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JButton jb_agregarPeli;
+    private javax.swing.JButton jb_agregarS;
+    private javax.swing.JButton jb_eliminarPeli;
+    private javax.swing.JButton jb_eliminarS;
+    private javax.swing.JButton jb_modificarPeli;
+    private javax.swing.JButton jb_modificarS;
     private javax.swing.JDialog jd_home;
     private javax.swing.JDialog jd_registro;
     private javax.swing.JList<String> jl_peliculas;
     private javax.swing.JList<String> jl_series;
+    private javax.swing.JTree jt_arbol;
     private javax.swing.JPasswordField ps_contra;
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_nacimiento;
@@ -656,6 +873,6 @@ public class lab6_Jvidal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_user;
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
-ArrayList users = new ArrayList();
-
+    ArrayList peliculas = new ArrayList();
+    ArrayList series = new ArrayList();
 }

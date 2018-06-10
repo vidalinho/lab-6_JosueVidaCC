@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 class Series {
 
-    private String id;
+    private int id;
     private String nombre;
     private int temporadas;
     private String categoria;
@@ -28,7 +28,7 @@ class Series {
     public Series() {
     }
 
-    public Series(String id, String nombre, int temporadas, String categoria, int duracion, int rating, String productora, String director) {
+    public Series(int id, String nombre, int temporadas, String categoria, int duracion, int rating, String productora, String director) {
         this.id = id;
         this.nombre = nombre;
         this.temporadas = temporadas;
@@ -39,11 +39,11 @@ class Series {
         this.director = director;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -137,7 +137,7 @@ class Series {
 
     @Override
     public String toString() {
-        return "Series{" + "id=" + id + ", nombre=" + nombre + ", temporadas=" + temporadas + ", categoria=" + categoria + ", idiomas=" + idiomas + ", subs=" + subs + ", duracion=" + duracion + ", rating=" + rating + ", comentarios=" + comentarios + ", productora=" + productora + ", director=" + director + ", actores=" + actores + '}';
+        return nombre;
     }
 
 }
